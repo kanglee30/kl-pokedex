@@ -24,8 +24,8 @@ function HistoryProvider({ children }: HistoryProviderProps) {
   useEffect(() => {
     const history = localStorage.getItem("history");
     if (history) {
-      const parsedHistory = JSON.parse(history);
-      const mergedHistory: any = [];
+      const parsedHistory: PokemonItemProps[] = JSON.parse(history);
+      const mergedHistory: PokemonItemProps[] = [];
       const historyLength = Math.max(
         parsedHistory.length,
         pokemonHistory.length
