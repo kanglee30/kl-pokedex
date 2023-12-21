@@ -17,15 +17,24 @@ interface HistoryProviderProps {
 
 function HistoryProvider({ children }: HistoryProviderProps) {
   const [history, setHistory] = useState<PokemonItemProps[] | []>([]);
-  const pokemonHistory = useAppSelector((state) => {
+  const pokemonHistory: PokemonItemProps[] = useAppSelector((state) => {
     return state.pokemon.history;
   });
 
   useEffect(() => {
     const history = localStorage.getItem("history");
     if (history) {
-      localStorage.setItem("history", JSON.stringify(pokemonHistory));
-      setHistory(pokemonHistory);
+      const parsedHistory = JSON.parse(history);
+      const newHistory = Array.from(
+        new Set([...parsedHistory, ...pokemonHistory].map((obj) => obj.id))
+      ).map((id) => {
+        const matchingObject =
+          parsedHistory.find((obj: PokemonItemProps) => obj.id === id) ||
+          pokemonHistory.find((obj: PokemonItemProps) => obj.id === id);
+        return { ...matchingObject };
+      });
+      localStorage.setItem("history", JSON.stringify(newHistory));
+      setHistory(newHistory);
     } else {
       localStorage.setItem("history", JSON.stringify(pokemonHistory));
       setHistory(pokemonHistory);
