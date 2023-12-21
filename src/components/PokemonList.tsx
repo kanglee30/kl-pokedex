@@ -6,11 +6,6 @@ import { useAppSelector } from "../hooks";
 //Components
 import PokemonItem from "./PokemonItem";
 
-//Types
-interface PokemonListProps {
-  history?: boolean;
-}
-
 //STYLES
 const StyledPokemonList = styled.div`
   margin-top: 20px;
@@ -19,7 +14,7 @@ const StyledPokemonList = styled.div`
   }
 `;
 
-const PokemonList: React.FC<PokemonListProps> = ({ history = false }) => {
+const PokemonList: React.FC = () => {
   const { history: contextHistory } = useContext(HistoryContext);
 
   const pokemonData = useAppSelector((state) => {
