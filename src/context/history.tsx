@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, ReactNode } from "react";
 import { PokemonItemProps } from "../store/slices/pokemonSlice";
 import { useAppSelector } from "../hooks";
 
+//TYPES
 interface HistoryContextProps {
   history: PokemonItemProps[] | [];
 }
@@ -23,10 +24,8 @@ function HistoryProvider({ children }: HistoryProviderProps) {
   useEffect(() => {
     const history = localStorage.getItem("history");
     if (history) {
-      const parsedHistory = JSON.parse(history);
-      const newHistory = [...parsedHistory, ...pokemonHistory];
-      localStorage.setItem("history", JSON.stringify(newHistory));
-      setHistory(newHistory);
+      localStorage.setItem("history", JSON.stringify(pokemonHistory));
+      setHistory(pokemonHistory);
     } else {
       localStorage.setItem("history", JSON.stringify(pokemonHistory));
       setHistory(pokemonHistory);

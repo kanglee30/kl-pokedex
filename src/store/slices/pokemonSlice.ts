@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchPokemon } from "../thunks/fetchPokemon";
 
+//TYPES
 export interface PokemonTypesProps {
   slot: number;
   type: {

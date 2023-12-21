@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { PokemonType } from "../util";
 
+//NOTE: I had hesitation about adding Icons but I found a nice svg library.
+
+// Types
 interface PokemonTypeIconProps {
   typedName: string;
 }
 
+// NOTES
 const StyledPokemonTypeIcon = styled.div`
   padding-right: 10px;
   svg {

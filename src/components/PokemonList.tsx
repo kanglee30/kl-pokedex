@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import HistoryContext from "../context/history";
 import { useAppSelector } from "../hooks";
@@ -6,10 +6,12 @@ import { useAppSelector } from "../hooks";
 //Components
 import PokemonItem from "./PokemonItem";
 
+//Types
 interface PokemonListProps {
   history?: boolean;
 }
 
+//STYLES
 const StyledPokemonList = styled.div`
   margin-top: 20px;
   h2 {
@@ -24,25 +26,23 @@ const PokemonList: React.FC<PokemonListProps> = ({ history = false }) => {
     return state.pokemon.data[0];
   });
 
-  const pokemonHistory = contextHistory;
-  let renderedBase = null;
-
-  if (history && pokemonHistory.length > 0) {
-    renderedBase = (
-      <div>
-        <h2>History</h2>
-        {pokemonHistory.map((item, keys) => {
-          return <PokemonItem key={`${item.name}_$${keys}`} item={item} />;
-        })}
-      </div>
-    );
-  } else {
-    renderedBase = (
-      <div>{pokemonData && <PokemonItem item={pokemonData} />}</div>
-    );
-  }
-
-  return <StyledPokemonList>{renderedBase}</StyledPokemonList>;
+  return (
+    <StyledPokemonList>
+      {pokemonData && (
+        <div>
+          <PokemonItem item={pokemonData} />
+        </div>
+      )}
+      {contextHistory.length > 0 && (
+        <div>
+          <h2>History</h2>
+          {contextHistory.map((item, keys) => {
+            return <PokemonItem key={`${item.name}_${keys}`} item={item} />;
+          })}
+        </div>
+      )}
+    </StyledPokemonList>
+  );
 };
 
 export default PokemonList;

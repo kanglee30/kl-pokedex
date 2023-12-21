@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { fetchPokemon } from "../store";
 import { useAppDispatch } from "../hooks";
 
+//STYLES
 const StyledSearchBar = styled.div`
   .search_bar__form {
     display: flex;

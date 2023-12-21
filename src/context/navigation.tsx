@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect, ReactNode } from "react";
-
+// NOTE: Originally I had the idea to use a simple navigation route context as you navigated to
+// pokemon, but thought it looked better to navigate as a flat app. I left this here as an example
+// of how you could use a context to navigate around your app.
 interface NavigationContextProps {
   currentPath: string;
   navigate: (to: string) => void;

@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+// Components
 import PokemonList from "./components/PokemonList";
-import Route from "./components/Route";
 import SearchBar from "./components/SearchBar";
 
+// Styles
 const StyledApp = styled.div`
   display: flex;
   flex-direction: column;
@@ -15,12 +16,9 @@ const StyledApp = styled.div`
 function App() {
   return (
     <StyledApp className="App">
-      <Route path="/">
-        <h1>PokeDex</h1>
-        <SearchBar />
-        <PokemonList />
-        <PokemonList history={true} />
-      </Route>
+      <h1>PokeDex</h1>
+      <SearchBar />
+      <PokemonList />
     </StyledApp>
   );
 }

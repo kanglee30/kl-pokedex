@@ -12,7 +12,7 @@ import { formatName } from "../util";
 import PokemonTypeIcon from "./PokemonTypeIcon";
 
 interface ItemProps {
-  idx?: string;
+  idx?: number;
   item: PokemonItemProps;
 }
 
@@ -57,10 +57,9 @@ const StyledPokemonItem = styled.div`
     }
     &__img {
       button {
-        padding: 3px 3px;
         border-radius: 5px;
         border: none;
-        cursor: pointer;
+        padding: 3px 3px;
         &:nth-child(2) {
           color: white;
           margin-left: 5px;
@@ -120,7 +119,7 @@ const StyledPokemonItem = styled.div`
   }
 `;
 
-const PokemonItem: React.FC<ItemProps> = ({ item, idx }) => {
+const PokemonItem: React.FC<ItemProps> = ({ item, idx = 0 }) => {
   const [showShiny, setShowShiny] = useState(false);
   const { name, sprites, abilities, moves, species, type, id } = item;
   return (

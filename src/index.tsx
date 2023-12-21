@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
 import { Provider } from "react-redux";
+import App from "./App";
+import "./index.css";
 import { store } from "./store";
-import { NavigationProvider } from "./context/navigation";
+
+// Provider for history
 import { HistoryProvider } from "./context/history";
 
 const root = ReactDOM.createRoot(
@@ -13,11 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <NavigationProvider>
-        <HistoryProvider>
-          <App />
-        </HistoryProvider>
-      </NavigationProvider>
+      <HistoryProvider>
+        <App />
+      </HistoryProvider>
     </Provider>
   </React.StrictMode>
 );
