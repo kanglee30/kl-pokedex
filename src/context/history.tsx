@@ -25,16 +25,21 @@ function HistoryProvider({ children }: HistoryProviderProps) {
     const history = localStorage.getItem("history");
     if (history) {
       const parsedHistory = JSON.parse(history);
-      const newHistory = Array.from(
-        new Set([...parsedHistory, ...pokemonHistory].map((obj) => obj.id))
-      ).map((id) => {
-        const matchingObject =
-          parsedHistory.find((obj: PokemonItemProps) => obj.id === id) ||
-          pokemonHistory.find((obj: PokemonItemProps) => obj.id === id);
-        return { ...matchingObject };
-      });
-      localStorage.setItem("history", JSON.stringify(newHistory));
-      setHistory(newHistory);
+      const mergedHistory: any = [];
+      const historyLength = Math.max(
+        parsedHistory.length,
+        pokemonHistory.length
+      );
+
+      for (let i = 0; i < historyLength; i++) {
+        mergedHistory.push({
+          ...parsedHistory[i],
+          ...pokemonHistory[i],
+        });
+      }
+
+      localStorage.setItem("history", JSON.stringify(mergedHistory));
+      setHistory(mergedHistory);
     } else {
       localStorage.setItem("history", JSON.stringify(pokemonHistory));
       setHistory(pokemonHistory);
